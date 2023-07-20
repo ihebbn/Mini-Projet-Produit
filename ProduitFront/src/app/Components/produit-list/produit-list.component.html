@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Produit CRUD Application</title>
+</head>
+<body> 
+    
+    <main>
+        <div class="container-fluid px-4">
+          <h1 class="mt-4" align="center">List of Products</h1>
+          <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item active"></li>
+          </ol>
+          <div>
+            <div class="search-hero" class="col-md-3">
+              <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="&#61442;  Start searching for a product">
+            </div>
+    <table>
+        <thead>
+            <tr>
+                <th>Produit Name</th>
+                <th>Price</th>
+                <th>Quantity</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let prod of produits | filter:searchText">
+
+          
+            <td> {{prod.nom}}</td>
+            <td> {{prod.prixUnitaire}} </td>
+            <td> {{prod.quantite}}</td>
+            
+            <td class="td-actions text-right">
+
+                <div class="d-flex justify-content-center">
+                  <button class="btn btn-danger mr-2" (click)="OndeleteClick(prod.idProduit)">
+                    <i class="bi bi-trash-fill"></i>
+                  </button>
+                  <button class="btn btn-primary mr-2" (click)="redirectToUpdateProduct()">
+                    <i class="bi bi-pencil-fill"></i>
+                  </button>
+                  
+                </div>
+              </td>
+              </tr>
+        </tbody>
+    </table>
+
+    
+    <button class="btn btn-primary" (click)="redirectToAddProduct()">Add Product</button>
+
+    </div>
+
+  </div>
+</main>
+
+    

@@ -1,0 +1,40 @@
+<h2>Add Product</h2>
+
+<div>
+    <form #f="ngForm" (submit)="addproduit()">
+      <div class="form-group">
+        <label for="nom">Product Name:</label><br>
+        <input type="text" id="nom" name="nom" [(ngModel)]="newProduct.nom" placeholder="Enter Name" minlength="3"  required #title="ngModel">
+        <div *ngIf="title.invalid && title.touched">
+          <div class=" alert alert-danger">
+            <div *ngIf="title.errors?.['required']">Name is required</div>
+            <div *ngIf="title.errors?.['minlength']"> Name must contain more than 2 characters </div>
+          </div>
+        </div><br>
+      </div>
+
+      <br>
+
+      <div class="form-group">
+        <label for="prixUnitaire">Price :</label><br>
+        <input type="number" id="prixUnitaire" name="prixUnitaire" [(ngModel)]="newProduct.prixUnitaire" placeholder="Enter the price" min=1 required #price="ngModel">
+        <div *ngIf="price.invalid && price.touched ">
+          <div class=" alert alert-danger">
+            <div *ngIf="price.errors?.['required']">Price is required</div>
+          </div>
+        </div>
+        </div><br>
+
+        <div class="form-group">
+            <label for="quantite">Quantity :</label><br>
+            <input type="number" id="quantite" name="quantite" [(ngModel)]="newProduct.quantite" placeholder="Enter quantity" min=1 max=9999 required #quantity="ngModel">
+            <div *ngIf="quantity.invalid && quantity.touched ">
+              <div class=" alert alert-danger">
+                <div *ngIf="quantity.errors?.['required']">Quantity is required</div>
+                <div *ngIf="quantity.errors?.['max']"> Quantity must be less than 10000 </div>
+              </div>
+            </div>
+            </div>
+        <button class="btn btn-success" [disabled]="f.invalid" type="submit" onclick="location.href='produit-list'">  Add </button>
+    </form>
+  </div>
